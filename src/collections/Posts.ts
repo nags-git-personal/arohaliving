@@ -1,0 +1,44 @@
+import type { CollectionConfig } from 'payload'
+
+export const Posts: CollectionConfig = {
+  slug: 'posts',
+  admin: { useAsTitle: 'title', group: 'Content' },
+  fields: [
+    { name: 'title', type: 'text', required: true },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      admin: { position: 'sidebar' },
+    },
+    { name: 'excerpt', type: 'textarea' },
+    { name: 'featuredImage', type: 'upload', relationTo: 'media' },
+    {
+      name: 'category',
+      type: 'select',
+      options: [
+        { label: 'Health & Wellness', value: 'health' },
+        { label: 'Community Life', value: 'community' },
+        { label: 'Events', value: 'events' },
+        { label: 'Tips & Advice', value: 'tips' },
+      ],
+    },
+    { name: 'content', type: 'richText' },
+    {
+      name: 'publishedDate',
+      type: 'date',
+      admin: { position: 'sidebar' },
+    },
+    {
+      name: 'status',
+      type: 'select',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+      ],
+      defaultValue: 'draft',
+      admin: { position: 'sidebar' },
+    },
+  ],
+}
