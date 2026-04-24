@@ -42,6 +42,13 @@ next-env.d.ts
 
 /media
 
+# local SQLite databases (keep ./db folder, ignore the data files inside it)
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+!db/.gitkeep
+
 # Playwright
 node_modules/
 /test-results/
