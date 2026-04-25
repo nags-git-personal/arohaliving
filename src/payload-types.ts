@@ -257,7 +257,7 @@ export interface Enquiry {
   name: string;
   phone: string;
   email?: string | null;
-  interest?: ('independent' | 'assisted' | 'memory' | 'visit' | 'general') | null;
+  interest?: ('independent' | 'assisted' | 'memory' | 'visit' | 'general' | 'other') | null;
   message?: string | null;
   status?: ('new' | 'contacted' | 'qualified' | 'closed') | null;
   updatedAt: string;

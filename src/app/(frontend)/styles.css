@@ -968,7 +968,25 @@ a:hover { color: var(--c-gold); }
   outline: none;
   border-color: var(--c-gold);
 }
+.form-field input:invalid:not(:placeholder-shown),
+.form-field select:invalid,
+.form-field textarea:invalid:not(:placeholder-shown) {
+  border-color: #dc5050;
+}
+.form-field select { color-scheme: light; }
+.form-field select option {
+  color: #1a1a1a;
+  background: #ffffff;
+}
 .form-field textarea { resize: vertical; min-height: 110px; }
+.form-counter {
+  float: right;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--c-cream);
+  opacity: 0.55;
+  text-transform: none;
+}
 .form-msg {
   padding: 12px 16px;
   background: rgba(201,169,110,0.12);

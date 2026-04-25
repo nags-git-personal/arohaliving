@@ -10,8 +10,8 @@ export const Enquiries: CollectionConfig = {
     delete: ({ req: { user } }) => !!user,
   },
   fields: [
-    { name: 'name', type: 'text', required: true },
-    { name: 'phone', type: 'text', required: true },
+    { name: 'name', type: 'text', required: true, maxLength: 50 },
+    { name: 'phone', type: 'text', required: true, maxLength: 20 },
     { name: 'email', type: 'email' },
     {
       name: 'interest',
@@ -22,9 +22,10 @@ export const Enquiries: CollectionConfig = {
         { label: 'Memory Care', value: 'memory' },
         { label: 'Schedule a Visit', value: 'visit' },
         { label: 'General Enquiry', value: 'general' },
+        { label: 'Other', value: 'other' },
       ],
     },
-    { name: 'message', type: 'textarea' },
+    { name: 'message', type: 'textarea', maxLength: 1000 },
     {
       name: 'status',
       type: 'select',
