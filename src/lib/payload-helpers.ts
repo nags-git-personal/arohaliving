@@ -10,15 +10,35 @@ async function client() {
   return getPayload({ config: await config })
 }
 
+const SETTINGS_FALLBACK = {
+  siteName: 'Aroha Living',
+  tagline: 'Redefining Retirement. Celebrating Life.',
+  phone: '+91 98765 43210',
+  email: 'hello@arohaliving.com',
+  whatsapp: '+919876543210',
+  address: 'Aroha Living\nBanjara Hills, Hyderabad\nTelangana 500034, India',
+  facebook: 'https://facebook.com/arohaliving',
+  instagram: 'https://instagram.com/arohaliving',
+  youtube: 'https://youtube.com/@arohaliving',
+} as const
+
+const isBlank = (v: unknown) =>
+  v === undefined || v === null || (typeof v === 'string' && v.trim() === '')
+
 export async function getSettings() {
+  let settings: Record<string, unknown> = {}
   try {
     const payload = await client()
-    const settings = await (payload.findGlobal as any)({ slug: 'site-settings' })
-    return settings as Record<string, unknown>
+    const result = await (payload.findGlobal as any)({ slug: 'site-settings' })
+    if (result && typeof result === 'object') settings = result as Record<string, unknown>
   } catch (err) {
     console.error('[getSettings] failed', err)
-    return null
   }
+  const merged: Record<string, unknown> = { ...settings }
+  for (const [key, fallback] of Object.entries(SETTINGS_FALLBACK)) {
+    if (isBlank(merged[key])) merged[key] = fallback
+  }
+  return merged
 }
 
 export async function getAmenities() {

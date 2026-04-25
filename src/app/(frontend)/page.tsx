@@ -29,6 +29,7 @@ export default async function HomePage() {
     phone?: string
     email?: string
     address?: string
+    whatsapp?: string
     heroSlides?: Array<{ heading?: string; subheading?: string }>
   }
 
@@ -44,7 +45,7 @@ export default async function HomePage() {
       <Testimonials items={testimonials as never} />
       <BlogPreview posts={posts as never} />
       <FaqAccordion items={faqs as never} />
-      <Contact phone={s.phone} email={s.email} address={s.address} />
+      <Contact phone={s.phone} email={s.email} address={s.address} whatsapp={s.whatsapp} />
     </>
   )
 }

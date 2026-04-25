@@ -26,6 +26,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
         phone={s.phone}
         email={s.email}
         address={s.address}
+        whatsapp={s.whatsapp}
         facebook={s.facebook}
         instagram={s.instagram}
         youtube={s.youtube}

@@ -7,6 +7,7 @@ type FooterProps = {
   phone?: string
   email?: string
   address?: string
+  whatsapp?: string
   facebook?: string
   instagram?: string
   youtube?: string
@@ -16,11 +17,13 @@ export const Footer: React.FC<FooterProps> = ({
   phone,
   email,
   address,
+  whatsapp,
   facebook,
   instagram,
   youtube,
 }) => {
   const year = new Date().getFullYear()
+  const waDigits = whatsapp?.replace(/[^\d+]/g, '').replace('+', '')
   return (
     <footer className="footer">
       <div className="container">
@@ -71,6 +74,13 @@ export const Footer: React.FC<FooterProps> = ({
                 <li>
                   <a href={`mailto:${email}`}>
                     <Icon name="mail" size={14} /> {email}
+                  </a>
+                </li>
+              )}
+              {whatsapp && waDigits && (
+                <li>
+                  <a href={`https://wa.me/${waDigits}`} target="_blank" rel="noreferrer">
+                    <Icon name="whatsapp" size={14} /> {whatsapp}
                   </a>
                 </li>
               )}

@@ -6,9 +6,11 @@ type Props = {
   phone?: string
   email?: string
   address?: string
+  whatsapp?: string
 }
 
-export const Contact: React.FC<Props> = ({ phone, email, address }) => {
+export const Contact: React.FC<Props> = ({ phone, email, address, whatsapp }) => {
+  const waDigits = whatsapp?.replace(/[^\d+]/g, '').replace('+', '')
   return (
     <section className="section section-dark" id="contact">
       <div className="container">
@@ -38,6 +40,22 @@ export const Contact: React.FC<Props> = ({ phone, email, address }) => {
                 <div>
                   <div className="contact-info-label">Email Us</div>
                   <a className="contact-info-value" href={`mailto:${email}`}>{email}</a>
+                </div>
+              </div>
+            )}
+            {whatsapp && waDigits && (
+              <div className="contact-info-item">
+                <span className="contact-icon"><Icon name="whatsapp" size={18} /></span>
+                <div>
+                  <div className="contact-info-label">WhatsApp</div>
+                  <a
+                    className="contact-info-value"
+                    href={`https://wa.me/${waDigits}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {whatsapp}
+                  </a>
                 </div>
               </div>
             )}
