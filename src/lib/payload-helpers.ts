@@ -13,9 +13,9 @@ async function client() {
 const SETTINGS_FALLBACK = {
   siteName: 'Aroha Living',
   tagline: 'Redefining Retirement. Celebrating Life.',
-  phone: '+91 98765 43210',
+  phone: '+91 99667 74288',
   email: 'hello@arohaliving.com',
-  whatsapp: '+919876543210',
+  whatsapp: '+919966774288',
   address: 'Aroha Living\nBanjara Hills, Hyderabad\nTelangana 500034, India',
   facebook: 'https://facebook.com/arohaliving',
   instagram: 'https://instagram.com/arohaliving',
