@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
@@ -60,7 +61,7 @@ export async function POST(req: Request) {
     if (email) data.email = email
     if (message) data.message = message
 
-    await payload.create({ collection: 'enquiries', data })
+    await (payload.create as any)({ collection: 'enquiries', data })
 
     return Response.json({ ok: true }, { status: 201 })
   } catch (err) {
