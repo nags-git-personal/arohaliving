@@ -11,12 +11,12 @@ async function client() {
 }
 
 const SETTINGS_FALLBACK = {
-  siteName: 'Aroha Living',
-  tagline: 'Redefining Retirement. Celebrating Life.',
+  siteName: 'The Park by Aroha',
+  tagline: 'Where Graceful Ageing Meets Modern Comfort',
   phone: '+91 99667 74288',
   email: 'hello@arohaliving.com',
   whatsapp: '+919966774288',
-  address: 'Aroha Living\nBanjara Hills, Hyderabad\nTelangana 500034, India',
+  address: 'The Park by Aroha\nMedchal, Hyderabad\nTelangana, India',
   facebook: 'https://facebook.com/arohaliving',
   instagram: 'https://instagram.com/arohaliving',
   youtube: 'https://youtube.com/@arohaliving',

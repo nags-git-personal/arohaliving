@@ -221,6 +221,12 @@ a:hover { color: var(--c-gold); }
   position: absolute; inset: 0;
   overflow: hidden;
 }
+.hero-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 .hero-slide {
   position: absolute; inset: 0;
   background-size: cover;
@@ -435,11 +441,30 @@ a:hover { color: var(--c-gold); }
   line-height: 1.4;
 }
 
+.about-vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 72px;
+}
+.about-vm-card {
+  background: linear-gradient(135deg, rgba(232,178,58,0.08) 0%, rgba(168,212,168,0.06) 100%);
+  border: 1px solid var(--c-gold);
+  border-radius: 4px;
+  padding: 36px 40px;
+}
+.about-vm-card h3 {
+  font-size: 20px;
+  margin: 12px 0 16px;
+  color: var(--c-charcoal);
+}
+.about-vm-card p { color: var(--c-muted); font-size: 15px; line-height: 1.75; }
 @media (max-width: 900px) {
   .about-grid { grid-template-columns: 1fr; gap: 64px; }
   .about-image-main::before { display: none; }
   .about-visual { aspect-ratio: 4/4.2; max-width: 520px; margin: 0 auto; }
   .about-features { grid-template-columns: 1fr 1fr; }
+  .about-vm-grid { grid-template-columns: 1fr; }
 }
 
 
@@ -1102,4 +1127,34 @@ a:hover { color: var(--c-gold); }
 .page-header > * { position: relative; z-index: 1; }
 .page-header h1 { color: var(--c-cream); }
 .page-header .breadcrumbs { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c-gold); }
+
+/* VIDEO SECTION */
+.video-section { background: var(--c-charcoal); color: var(--c-cream); }
+.video-section h2 { color: var(--c-cream); }
+.video-section .eyebrow { color: var(--c-gold); }
+.video-section .divider { margin: 20px auto; background: var(--c-gold); }
+.video-section-intro {
+  max-width: 680px;
+  margin: 0 auto 48px;
+  color: rgba(255,255,255,0.72);
+  font-size: 16px;
+  line-height: 1.75;
+}
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  border: 1px solid rgba(232,178,58,0.2);
+}
+.video-wrapper video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
 

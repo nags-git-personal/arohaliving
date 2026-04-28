@@ -33,8 +33,6 @@ export const Navbar: React.FC<NavbarProps> = ({ phone }) => {
           <li><Link href="/#about">About</Link></li>
           <li><Link href="/#amenities">Amenities</Link></li>
           <li><Link href="/#living">Living Options</Link></li>
-          <li><Link href="/blog">Insights</Link></li>
-          <li><Link href="/#faq">FAQ</Link></li>
           <li><Link href="/#contact">Contact</Link></li>
         </ul>
         <div className="nav-cta">

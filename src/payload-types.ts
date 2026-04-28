@@ -162,7 +162,7 @@ export interface User {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -531,6 +531,12 @@ export interface SiteSetting {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Upload the site walkthrough video. It will play muted and looped on the homepage.
+   */
+  walkthroughVideo?: (number | null) | Media;
+  walkthroughVideoTitle?: string | null;
+  walkthroughVideoCaption?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -558,6 +564,9 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  walkthroughVideo?: T;
+  walkthroughVideoTitle?: T;
+  walkthroughVideoCaption?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

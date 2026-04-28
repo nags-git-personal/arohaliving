@@ -46,8 +46,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li><Link href="/#about">About Us</Link></li>
               <li><Link href="/#amenities">Amenities</Link></li>
               <li><Link href="/#living">Living Options</Link></li>
-              <li><Link href="/blog">Insights</Link></li>
-              <li><Link href="/#faq">FAQ</Link></li>
+              <li><Link href="/#contact">Contact Us</Link></li>
             </ul>
           </div>
           <div>
