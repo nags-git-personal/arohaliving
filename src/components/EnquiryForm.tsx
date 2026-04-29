@@ -93,9 +93,9 @@ export const EnquiryForm: React.FC = () => {
           <label htmlFor="ef-interest">I&apos;m interested in</label>
           <select id="ef-interest" value={form.interest} onChange={update('interest')}>
             <option value="general">General Enquiry</option>
-            <option value="independent">Independent Living</option>
-            <option value="assisted">Assisted Living</option>
-            <option value="memory">Memory Care</option>
+            <option value="active-adult">Active Adult Community</option>
+            <option value="residences">Residence Details</option>
+            <option value="wellness">Wellness &amp; Medical Services</option>
             <option value="visit">Schedule a Visit</option>
             <option value="other">Other</option>
           </select>
@@ -113,7 +113,7 @@ export const EnquiryForm: React.FC = () => {
           onChange={update('message', MESSAGE_MAX)}
         />
       </div>
-      <button className="btn" type="submit" disabled={submitting} style={{ justifySelf: 'start', marginTop: 8 }}>
+      <button className="btn form-submit" type="submit" disabled={submitting}>
         {submitting ? 'Sending…' : 'Submit Enquiry'}
       </button>
       {status && (

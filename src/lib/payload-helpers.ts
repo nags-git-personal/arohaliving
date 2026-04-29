@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 
@@ -6,9 +7,9 @@ import config from '@/payload.config'
 // we access collections/globals as loose types so builds don't fail when this
 // file is edited before types are regenerated.
 
-async function client() {
+const client = cache(async () => {
   return getPayload({ config: await config })
-}
+})
 
 const SETTINGS_FALLBACK = {
   siteName: 'The Park by Aroha',
@@ -25,7 +26,7 @@ const SETTINGS_FALLBACK = {
 const isBlank = (v: unknown) =>
   v === undefined || v === null || (typeof v === 'string' && v.trim() === '')
 
-export async function getSettings() {
+export const getSettings = cache(async () => {
   let settings: Record<string, unknown> = {}
   try {
     const payload = await client()
@@ -39,6 +40,19 @@ export async function getSettings() {
     if (isBlank(merged[key])) merged[key] = fallback
   }
   return merged
+})
+
+export function getMediaUrl(media: unknown): string | undefined {
+  if (media && typeof media === 'object' && 'url' in media) {
+    const value = (media as { url?: unknown }).url
+    if (typeof value === 'string' && value.trim()) return value
+  }
+
+  if (typeof media === 'string' && media.trim()) {
+    return media
+  }
+
+  return undefined
 }
 
 export async function getAmenities() {

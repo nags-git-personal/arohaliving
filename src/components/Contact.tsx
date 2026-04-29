@@ -7,21 +7,44 @@ type Props = {
   email?: string
   address?: string
   whatsapp?: string
+  eyebrow?: string
+  title?: string
+  intro?: string
+  callLabel?: string
+  emailLabel?: string
+  whatsappLabel?: string
+  visitLabel?: string
+  hoursLabel?: string
+  hoursValue?: string
+  imageUrl?: string
 }
 
-export const Contact: React.FC<Props> = ({ phone, email, address, whatsapp }) => {
+export const Contact: React.FC<Props> = ({
+  phone,
+  email,
+  address,
+  whatsapp,
+  eyebrow = 'Begin the Conversation',
+  title = 'Visit us — experience it for yourself',
+  intro = 'Words can only describe so much. Come spend an afternoon with us, share a meal, meet our residents, and feel the warmth of Aroha for yourself.',
+  callLabel = 'Call Us',
+  emailLabel = 'Email Us',
+  whatsappLabel = 'WhatsApp',
+  visitLabel = 'Visit Us',
+  hoursLabel = 'Hours',
+  hoursValue = 'Visits by appointment · 9am – 7pm daily',
+  imageUrl = '/media/site/image6.png',
+}) => {
   const waDigits = whatsapp?.replace(/[^\d+]/g, '').replace('+', '')
+
   return (
     <section className="section section-dark" id="contact">
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <span className="eyebrow">Begin the Conversation</span>
-          <h2>Visit us — experience it for yourself</h2>
-          <div className="divider" style={{ margin: '20px auto' }} />
-          <p style={{ maxWidth: 640, margin: '0 auto', opacity: 0.85 }}>
-            Words can only describe so much. Come spend an afternoon with us, share a meal,
-            meet our residents, and feel the warmth of Aroha for yourself.
-          </p>
+        <div className="contact-header">
+          <span className="eyebrow">{eyebrow}</span>
+          <h2>{title}</h2>
+          <div className="divider" />
+          <p className="contact-intro">{intro}</p>
         </div>
         <div className="contact-grid">
           <div>
@@ -29,7 +52,7 @@ export const Contact: React.FC<Props> = ({ phone, email, address, whatsapp }) =>
               <div className="contact-info-item">
                 <span className="contact-icon"><Icon name="phone" size={18} /></span>
                 <div>
-                  <div className="contact-info-label">Call Us</div>
+                  <div className="contact-info-label">{callLabel}</div>
                   <a className="contact-info-value" href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
                 </div>
               </div>
@@ -38,7 +61,7 @@ export const Contact: React.FC<Props> = ({ phone, email, address, whatsapp }) =>
               <div className="contact-info-item">
                 <span className="contact-icon"><Icon name="mail" size={18} /></span>
                 <div>
-                  <div className="contact-info-label">Email Us</div>
+                  <div className="contact-info-label">{emailLabel}</div>
                   <a className="contact-info-value" href={`mailto:${email}`}>{email}</a>
                 </div>
               </div>
@@ -47,7 +70,7 @@ export const Contact: React.FC<Props> = ({ phone, email, address, whatsapp }) =>
               <div className="contact-info-item">
                 <span className="contact-icon"><Icon name="whatsapp" size={18} /></span>
                 <div>
-                  <div className="contact-info-label">WhatsApp</div>
+                  <div className="contact-info-label">{whatsappLabel}</div>
                   <a
                     className="contact-info-value"
                     href={`https://wa.me/${waDigits}`}
@@ -63,20 +86,25 @@ export const Contact: React.FC<Props> = ({ phone, email, address, whatsapp }) =>
               <div className="contact-info-item">
                 <span className="contact-icon"><Icon name="mapPin" size={18} /></span>
                 <div>
-                  <div className="contact-info-label">Visit Us</div>
-                  <div className="contact-info-value" style={{ whiteSpace: 'pre-line' }}>{address}</div>
+                  <div className="contact-info-label">{visitLabel}</div>
+                  <div className="contact-info-value contact-address">{address}</div>
                 </div>
               </div>
             )}
             <div className="contact-info-item">
               <span className="contact-icon"><Icon name="star" size={18} /></span>
               <div>
-                <div className="contact-info-label">Hours</div>
-                <div className="contact-info-value">Visits by appointment · 9am – 7pm daily</div>
+                <div className="contact-info-label">{hoursLabel}</div>
+                <div className="contact-info-value">{hoursValue}</div>
               </div>
             </div>
           </div>
-          <div>
+          <div className="contact-form-column">
+            {imageUrl ? (
+              <div className="contact-image-card">
+                <img className="contact-image" src={imageUrl} alt={title} />
+              </div>
+            ) : null}
             <EnquiryForm />
           </div>
         </div>

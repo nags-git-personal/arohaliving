@@ -3,49 +3,64 @@
 import React, { useEffect, useState } from 'react'
 
 type HeroProps = {
-  heading?: string
-  subheading?: string
+  brandTitle?: string
+  brandCaption?: string
+  meta?: string
+  slides?: Slide[]
   videoUrl?: string
 }
 
-type Slide = { image: string; caption: string }
+export type Slide = {
+  image: string
+  caption: string
+  heading?: string
+  subheading?: string
+}
 
-const slides: Slide[] = [
+const defaultSlides: Slide[] = [
   {
-    image:
-      'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=2000&q=80',
-    caption: 'Medchal, Hyderabad',
+    image: '/media/site/image%201.png',
+    caption: 'A premium lifestyle, beautifully lived',
+    heading: 'Where Graceful Ageing Meets <em>Modern Comfort</em>',
+    subheading: 'A Luxury Technology-Enabled Senior Living Community',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1609220136736-443140cffec6?auto=format&fit=crop&w=2000&q=80',
-    caption: 'Families, always welcome',
+    image: '/media/site/image2.png',
+    caption: 'Warm company in elegant surroundings',
+    heading: 'Where Graceful Ageing Meets <em>Modern Comfort</em>',
+    subheading: 'A Luxury Technology-Enabled Senior Living Community',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1579208575657-c595a05383b7?auto=format&fit=crop&w=2000&q=80',
-    caption: 'Wellness every day',
+    image: '/media/site/image3.png',
+    caption: 'Wellness and confidence every day',
+    heading: 'Where Graceful Ageing Meets <em>Modern Comfort</em>',
+    subheading: 'A Luxury Technology-Enabled Senior Living Community',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=2000&q=80',
-    caption: '147 elegant apartments',
+    image: '/media/site/image4.png',
+    caption: 'A vibrant next chapter with style',
+    heading: 'Where Graceful Ageing Meets <em>Modern Comfort</em>',
+    subheading: 'A Luxury Technology-Enabled Senior Living Community',
   },
 ]
 
 export const Hero: React.FC<HeroProps> = ({
-  heading = 'Where Graceful Ageing Meets <em>Modern Comfort</em>',
-  subheading = 'An ascent to a higher quality of life — a thoughtfully designed, technology-enabled senior living community nestled in the serene surroundings of Medchal, Hyderabad.',
+  brandTitle = 'The Park',
+  brandCaption = 'by Aroha',
+  meta = '147 Premium Residences · Medchal · Hyderabad · Launching Soon',
+  slides = defaultSlides,
   videoUrl,
 }) => {
   const [active, setActive] = useState(0)
+  const safeSlides = slides.length > 0 ? slides : defaultSlides
+  const activeSlide = safeSlides[active] ?? safeSlides[0]
 
   useEffect(() => {
     const id = window.setInterval(() => {
-      setActive((i) => (i + 1) % slides.length)
+      setActive((i) => (i + 1) % safeSlides.length)
     }, 6500)
     return () => window.clearInterval(id)
-  }, [])
+  }, [safeSlides.length])
 
   return (
     <section className="hero" id="home">
@@ -60,40 +75,37 @@ export const Hero: React.FC<HeroProps> = ({
             playsInline
           />
         ) : (
-          slides.map((s, i) => (
+          safeSlides.map((s, i) => (
             <div
               key={s.image}
               className={`hero-slide ${i === active ? 'is-active' : ''}`}
-              style={{ backgroundImage: `url(${s.image})` }}
-            />
+            >
+              <img src={s.image} alt="" />
+            </div>
           ))
         )}
         <div className="hero-overlay" />
       </div>
       <div className="container hero-inner">
-        <span className="eyebrow">The Park by Aroha · Medchal, Hyderabad</span>
-        <h1 dangerouslySetInnerHTML={{ __html: heading }} />
-        <p className="hero-sub">{subheading}</p>
+        <div className="hero-brand-lockup" aria-label="The Park by Aroha">
+          <span className="hero-brand-title">{brandTitle}</span>
+          <span className="hero-brand-caption">{brandCaption}</span>
+        </div>
+        <h1 dangerouslySetInnerHTML={{ __html: activeSlide.heading || defaultSlides[0].heading || '' }} />
+        <p className="hero-sub">{activeSlide.subheading || defaultSlides[0].subheading}</p>
+        <p className="hero-meta">{meta}</p>
       </div>
-      <div className="hero-dots" role="tablist" aria-label="Hero slides">
-        {slides.map((s, i) => (
+      <div className="hero-dots" aria-label="Hero slides">
+        {safeSlides.map((s, i) => (
           <button
             key={s.image}
             type="button"
-            role="tab"
-            aria-selected={i === active}
             aria-label={s.caption}
             className={`hero-dot ${i === active ? 'is-active' : ''}`}
             onClick={() => setActive(i)}
-          >
-            <span className="hero-dot-bar" aria-hidden />
-            <span className="hero-dot-label">{s.caption}</span>
-          </button>
+          />
         ))}
       </div>
-      <a href="#about" className="hero-scroll">
-        Scroll ↓
-      </a>
     </section>
   )
 }

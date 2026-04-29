@@ -7,9 +7,27 @@ import { Icon } from './Icon'
 
 type NavbarProps = {
   phone?: string
+  links?: Array<{ label: string; href: string }>
+  ctaLabel?: string
+  ctaLink?: string
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ phone }) => {
+const defaultLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/#about' },
+  { label: 'Facilities', href: '/#amenities' },
+  { label: 'Residences', href: '/#residences' },
+  { label: 'Contact', href: '/#contact' },
+]
+
+const isHashLink = (href: string) => href.startsWith('/#') || href.startsWith('#')
+
+export const Navbar: React.FC<NavbarProps> = ({
+  phone,
+  links = defaultLinks,
+  ctaLabel = 'Enquire',
+  ctaLink = '/#contact',
+}) => {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -21,19 +39,22 @@ export const Navbar: React.FC<NavbarProps> = ({ phone }) => {
 
   return (
     <nav
-      className={`navbar ${open ? 'nav-open' : ''}`}
-      style={scrolled ? { background: 'rgba(13,13,13,0.96)' } : undefined}
+      className={`navbar ${open ? 'nav-open' : ''} ${scrolled ? 'navbar-scrolled' : ''}`}
     >
       <div className="container navbar-inner">
         <Link href="/" aria-label="Aroha Living home">
           <Logo variant="light" />
         </Link>
         <ul className="nav-links">
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/#about">About</Link></li>
-          <li><Link href="/#amenities">Amenities</Link></li>
-          <li><Link href="/#living">Living Options</Link></li>
-          <li><Link href="/#contact">Contact</Link></li>
+          {links.map((link) => (
+            <li key={`${link.label}-${link.href}`}>
+              {isHashLink(link.href) ? (
+                <a href={link.href}>{link.label}</a>
+              ) : (
+                <Link href={link.href}>{link.label}</Link>
+              )}
+            </li>
+          ))}
         </ul>
         <div className="nav-cta">
           {phone && (
@@ -42,9 +63,15 @@ export const Navbar: React.FC<NavbarProps> = ({ phone }) => {
               <span>{phone}</span>
             </a>
           )}
-          <Link href="/#contact" className="btn btn-outline" style={{ padding: '10px 20px' }}>
-            Enquire
-          </Link>
+          {isHashLink(ctaLink) ? (
+            <a href={ctaLink} className="btn btn-outline nav-cta-btn">
+              {ctaLabel}
+            </a>
+          ) : (
+            <Link href={ctaLink} className="btn btn-outline nav-cta-btn">
+              {ctaLabel}
+            </Link>
+          )}
           <button
             type="button"
             className="nav-toggle"

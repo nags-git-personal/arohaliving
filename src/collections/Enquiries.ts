@@ -17,9 +17,9 @@ export const Enquiries: CollectionConfig = {
       name: 'interest',
       type: 'select',
       options: [
-        { label: 'Independent Living', value: 'independent' },
-        { label: 'Assisted Living', value: 'assisted' },
-        { label: 'Memory Care', value: 'memory' },
+        { label: 'Active Adult Community', value: 'active-adult' },
+        { label: 'Residence Details', value: 'residences' },
+        { label: 'Wellness & Medical Services', value: 'wellness' },
         { label: 'Schedule a Visit', value: 'visit' },
         { label: 'General Enquiry', value: 'general' },
         { label: 'Other', value: 'other' },

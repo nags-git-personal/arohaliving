@@ -257,7 +257,7 @@ export interface Enquiry {
   name: string;
   phone: string;
   email?: string | null;
-  interest?: ('independent' | 'assisted' | 'memory' | 'visit' | 'general' | 'other') | null;
+  interest?: ('active-adult' | 'residences' | 'wellness' | 'visit' | 'general' | 'other') | null;
   message?: string | null;
   status?: ('new' | 'contacted' | 'qualified' | 'closed') | null;
   updatedAt: string;
@@ -521,16 +521,154 @@ export interface SiteSetting {
   facebook?: string | null;
   instagram?: string | null;
   youtube?: string | null;
+  navLinks?:
+    | {
+        label: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  navCtaLabel?: string | null;
+  navCtaLink?: string | null;
+  footerAbout?: string | null;
+  footerExploreHeading?: string | null;
+  footerExploreLinks?:
+    | {
+        label: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  footerCareHeading?: string | null;
+  footerCareItems?:
+    | {
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  footerContactHeading?: string | null;
+  footerBottomLeft?: string | null;
+  footerBottomRight?: string | null;
+  contactEyebrow?: string | null;
+  contactTitle?: string | null;
+  contactIntro?: string | null;
+  contactCallLabel?: string | null;
+  contactEmailLabel?: string | null;
+  contactWhatsappLabel?: string | null;
+  contactVisitLabel?: string | null;
+  contactHoursLabel?: string | null;
+  contactHoursValue?: string | null;
+  contactImage?: (number | null) | Media;
+  contactImageUrl?: string | null;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+  seoKeywords?: string | null;
+  ogTitle?: string | null;
+  ogDescription?: string | null;
+  ogImage?: (number | null) | Media;
+  ogImageUrl?: string | null;
+  heroBrandTitle?: string | null;
+  heroBrandCaption?: string | null;
+  heroMeta?: string | null;
   heroSlides?:
     | {
         heading: string;
         subheading?: string | null;
+        caption?: string | null;
         ctaText?: string | null;
         ctaLink?: string | null;
         image?: (number | null) | Media;
+        /**
+         * Optional external image URL. Used when no media upload is selected.
+         */
+        imageUrl?: string | null;
         id?: string | null;
       }[]
     | null;
+  promiseEyebrow?: string | null;
+  promiseHeading?: string | null;
+  promiseBody?: string | null;
+  promiseStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  careEyebrow?: string | null;
+  careHeading?: string | null;
+  careBody?: string | null;
+  partnerLabel?: string | null;
+  partnerUrl?: string | null;
+  careMainImage?: (number | null) | Media;
+  careMainImageUrl?: string | null;
+  careAccentImage?: (number | null) | Media;
+  careAccentImageUrl?: string | null;
+  careAccentLabel?: string | null;
+  careBadgeTitle?: string | null;
+  careBadgeMeta?: string | null;
+  missionEyebrow?: string | null;
+  missionTitle?: string | null;
+  missionBody?: string | null;
+  visionEyebrow?: string | null;
+  visionTitle?: string | null;
+  visionBody?: string | null;
+  facilitiesEyebrow?: string | null;
+  facilitiesTitle?: string | null;
+  facilitiesIntro?: string | null;
+  facilityCategories?:
+    | {
+        title: string;
+        subtitle: string;
+        intro: string;
+        badge?: string | null;
+        icon?:
+          | (
+              | 'heart'
+              | 'shield'
+              | 'utensils'
+              | 'dumbbell'
+              | 'book'
+              | 'leaf'
+              | 'wifi'
+              | 'bus'
+              | 'users'
+              | 'star'
+              | 'sun'
+              | 'home'
+            )
+          | null;
+        items?:
+          | {
+              title: string;
+              description: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  masterPlanEyebrow?: string | null;
+  masterPlanTitle?: string | null;
+  masterPlanBody?: string | null;
+  masterPlanImage?: (number | null) | Media;
+  masterPlanImageUrl?: string | null;
+  masterPlanPlaceholderLabel?: string | null;
+  masterPlanPlaceholderNote?: string | null;
+  residencesEyebrow?: string | null;
+  residencesTitleLineOne?: string | null;
+  residencesTitleLineTwo?: string | null;
+  residencesIntro?: string | null;
+  residenceCards?:
+    | {
+        title: string;
+        description: string;
+        image?: (number | null) | Media;
+        imageUrl?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  floorplanNote?: string | null;
   /**
    * Upload the site walkthrough video. It will play muted and looped on the homepage.
    */
@@ -554,16 +692,136 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   facebook?: T;
   instagram?: T;
   youtube?: T;
+  navLinks?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
+  navCtaLabel?: T;
+  navCtaLink?: T;
+  footerAbout?: T;
+  footerExploreHeading?: T;
+  footerExploreLinks?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
+  footerCareHeading?: T;
+  footerCareItems?:
+    | T
+    | {
+        label?: T;
+        id?: T;
+      };
+  footerContactHeading?: T;
+  footerBottomLeft?: T;
+  footerBottomRight?: T;
+  contactEyebrow?: T;
+  contactTitle?: T;
+  contactIntro?: T;
+  contactCallLabel?: T;
+  contactEmailLabel?: T;
+  contactWhatsappLabel?: T;
+  contactVisitLabel?: T;
+  contactHoursLabel?: T;
+  contactHoursValue?: T;
+  contactImage?: T;
+  contactImageUrl?: T;
+  seoTitle?: T;
+  seoDescription?: T;
+  seoKeywords?: T;
+  ogTitle?: T;
+  ogDescription?: T;
+  ogImage?: T;
+  ogImageUrl?: T;
+  heroBrandTitle?: T;
+  heroBrandCaption?: T;
+  heroMeta?: T;
   heroSlides?:
     | T
     | {
         heading?: T;
         subheading?: T;
+        caption?: T;
         ctaText?: T;
         ctaLink?: T;
         image?: T;
+        imageUrl?: T;
         id?: T;
       };
+  promiseEyebrow?: T;
+  promiseHeading?: T;
+  promiseBody?: T;
+  promiseStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  careEyebrow?: T;
+  careHeading?: T;
+  careBody?: T;
+  partnerLabel?: T;
+  partnerUrl?: T;
+  careMainImage?: T;
+  careMainImageUrl?: T;
+  careAccentImage?: T;
+  careAccentImageUrl?: T;
+  careAccentLabel?: T;
+  careBadgeTitle?: T;
+  careBadgeMeta?: T;
+  missionEyebrow?: T;
+  missionTitle?: T;
+  missionBody?: T;
+  visionEyebrow?: T;
+  visionTitle?: T;
+  visionBody?: T;
+  facilitiesEyebrow?: T;
+  facilitiesTitle?: T;
+  facilitiesIntro?: T;
+  facilityCategories?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        intro?: T;
+        badge?: T;
+        icon?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  masterPlanEyebrow?: T;
+  masterPlanTitle?: T;
+  masterPlanBody?: T;
+  masterPlanImage?: T;
+  masterPlanImageUrl?: T;
+  masterPlanPlaceholderLabel?: T;
+  masterPlanPlaceholderNote?: T;
+  residencesEyebrow?: T;
+  residencesTitleLineOne?: T;
+  residencesTitleLineTwo?: T;
+  residencesIntro?: T;
+  residenceCards?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        imageUrl?: T;
+        id?: T;
+      };
+  floorplanNote?: T;
   walkthroughVideo?: T;
   walkthroughVideoTitle?: T;
   walkthroughVideoCaption?: T;

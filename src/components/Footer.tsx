@@ -11,7 +11,17 @@ type FooterProps = {
   facebook?: string
   instagram?: string
   youtube?: string
+  about?: string
+  exploreHeading?: string
+  exploreLinks?: Array<{ label: string; href: string }>
+  careHeading?: string
+  careItems?: Array<{ label: string }>
+  contactHeading?: string
+  bottomLeft?: string
+  bottomRight?: string
 }
+
+const isHashLink = (href: string) => href.startsWith('/#') || href.startsWith('#')
 
 export const Footer: React.FC<FooterProps> = ({
   phone,
@@ -21,6 +31,26 @@ export const Footer: React.FC<FooterProps> = ({
   facebook,
   instagram,
   youtube,
+  about = 'A sanctuary of wellness, care and vibrant community life crafted for the most cherished chapter of your story.',
+  exploreHeading = 'Explore',
+  exploreLinks = [
+    { label: 'About Us', href: '/#about' },
+    { label: 'Facilities', href: '/#amenities' },
+    { label: 'Master Plan', href: '/#masterplan' },
+    { label: 'Residences', href: '/#residences' },
+    { label: 'Contact Us', href: '/#contact' },
+  ],
+  careHeading = 'Care',
+  careItems = [
+    { label: 'Active Adult Community' },
+    { label: 'Care-ready support' },
+    { label: 'Wellness and engagement' },
+    { label: 'Medical and safety services' },
+    { label: 'Customised daily living' },
+  ],
+  contactHeading = 'Contact',
+  bottomLeft = 'Aroha Living. All rights reserved.',
+  bottomRight = "Designed with care for life's finest years.",
 }) => {
   const year = new Date().getFullYear()
   const waDigits = whatsapp?.replace(/[^\d+]/g, '').replace('+', '')
@@ -30,10 +60,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="footer-grid">
           <div>
             <Logo variant="light" />
-            <p className="footer-about">
-              A sanctuary of wellness, care and vibrant community life crafted for the most cherished
-              chapter of your story.
-            </p>
+            <p className="footer-about">{about}</p>
             <div className="footer-socials">
               {facebook && <a href={facebook} aria-label="Facebook" target="_blank" rel="noreferrer"><span>f</span></a>}
               {instagram && <a href={instagram} aria-label="Instagram" target="_blank" rel="noreferrer"><span>ig</span></a>}
@@ -41,26 +68,29 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
           <div>
-            <h4>Explore</h4>
+            <h4>{exploreHeading}</h4>
             <ul>
-              <li><Link href="/#about">About Us</Link></li>
-              <li><Link href="/#amenities">Amenities</Link></li>
-              <li><Link href="/#living">Living Options</Link></li>
-              <li><Link href="/#contact">Contact Us</Link></li>
+              {exploreLinks.map((link) => (
+                <li key={`${link.label}-${link.href}`}>
+                  {isHashLink(link.href) ? (
+                    <a href={link.href}>{link.label}</a>
+                  ) : (
+                    <Link href={link.href}>{link.label}</Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
           <div>
-            <h4>Care</h4>
+            <h4>{careHeading}</h4>
             <ul>
-              <li>Independent Living</li>
-              <li>Assisted Living</li>
-              <li>Memory Care</li>
-              <li>Wellness Programs</li>
-              <li>Medical Services</li>
+              {careItems.map((item) => (
+                <li key={item.label}>{item.label}</li>
+              ))}
             </ul>
           </div>
           <div>
-            <h4>Contact</h4>
+            <h4>{contactHeading}</h4>
             <ul>
               {phone && (
                 <li>
@@ -84,17 +114,17 @@ export const Footer: React.FC<FooterProps> = ({
                 </li>
               )}
               {address && (
-                <li style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                <li className="footer-address-item">
                   <Icon name="mapPin" size={14} />
-                  <span style={{ whiteSpace: 'pre-line' }}>{address}</span>
+                  <span className="footer-address-text">{address}</span>
                 </li>
               )}
             </ul>
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© {year} Aroha Living. All rights reserved.</span>
-          <span>Designed with care for life&apos;s finest years.</span>
+          <span>© {year} {bottomLeft}</span>
+          <span>{bottomRight}</span>
         </div>
       </div>
     </footer>
