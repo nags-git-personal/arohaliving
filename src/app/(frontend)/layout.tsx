@@ -25,6 +25,11 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       s.seoDescription ||
       'A sanctuary of wellness, care and vibrant community life. Thoughtfully designed residences, 24/7 medical care, gourmet dining and a dignified retirement experience.',
+    icons: {
+      icon: '/favicon.svg',
+      shortcut: '/favicon.svg',
+      apple: '/favicon.svg',
+    },
     keywords:
       s.seoKeywords ||
       'senior living, retirement home, assisted living, independent living, memory care, Aroha Living',

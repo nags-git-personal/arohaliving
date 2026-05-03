@@ -102,9 +102,6 @@ export const LivingOptions: React.FC<LivingOptionsProps> = ({
               </article>
             ))}
           </div>
-          <div className="floorplan-note">
-            <strong>{floorplanNote}</strong>
-          </div>
         </div>
       </section>
     </>

@@ -82,14 +82,16 @@ export const About: React.FC<AboutProps> = ({
             <div className="divider" />
             <p>{promiseBody}</p>
           </div>
-          <ul className="about-features" aria-label="The Park by Aroha highlights">
-            {promiseStats.map((stat) => (
-              <li key={`${stat.value}-${stat.label}`}>
-                <span className="feature-value">{stat.value}</span>
-                <span className="feature-label">{stat.label}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="promise-sidecar">
+            <ul className="about-features" aria-label="The Park by Aroha highlights">
+              {promiseStats.map((stat) => (
+                <li key={`${stat.value}-${stat.label}`}>
+                  <span className="feature-value">{stat.value}</span>
+                  <span className="feature-label">{stat.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="about-grid about-grid-secondary">
