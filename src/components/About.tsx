@@ -34,6 +34,12 @@ const defaultStats: Stat[] = [
   { value: '24/7', label: 'Care-ready support ecosystem' },
 ]
 
+const legacyCareBody =
+  'The Park by Aroha is envisioned as an active adult community with the depth to evolve into assisted living whenever residents need it. The community is supported by seasoned healthcare and service professionals, creating a living environment where independence, reassurance and dignity stay in balance.'
+
+const defaultCareBody =
+  'The Park by Aroha is envisioned as a thoughtfully designed active adult community, with the flexibility to seamlessly evolve into assisted living as residents’ needs change over time. Supported by experienced healthcare and service professionals, and backed by Anvayaa Elder Care, one of India’s most trusted elder care service providers, the community offers an environment where independence, reassurance, and dignity remain in perfect balance.'
+
 const renderMultiline = (text: string) =>
   text.split('\n').map((line, index) => (
     <React.Fragment key={`${line}-${index}`}>
@@ -49,7 +55,7 @@ export const About: React.FC<AboutProps> = ({
   promiseStats = defaultStats,
   careEyebrow = 'Care-Led Community',
   careHeading = 'A community shaped by\nexperience and care',
-  careBody = 'The Park by Aroha is envisioned as an active adult community with the depth to evolve into assisted living whenever residents need it. The community is supported by seasoned healthcare and service professionals, creating a living environment where independence, reassurance and dignity stay in balance.',
+  careBody = defaultCareBody,
   partnerLabel = 'Explore Anvayaa Elder Care',
   partnerUrl = 'https://www.anvayaa.com/',
   mainImageUrl = '/media/site/image5.png',
@@ -64,6 +70,8 @@ export const About: React.FC<AboutProps> = ({
   visionTitle = "India's benchmark for graceful ageing",
   visionBody = 'To shape communities where senior living feels aspirational, safe and deeply human — blending hospitality, healthcare readiness and thoughtful design into a new standard for later life in India.',
 }) => {
+  const resolvedCareBody = careBody === legacyCareBody ? defaultCareBody : careBody
+
   return (
     <section className="section about-section" id="about">
       <div className="container">
@@ -89,14 +97,23 @@ export const About: React.FC<AboutProps> = ({
             <span className="eyebrow">{careEyebrow}</span>
             <h2>&ldquo;{renderMultiline(careHeading)}&rdquo;</h2>
             <div className="divider" />
-            <p>{careBody}</p>
+            <p>{resolvedCareBody}</p>
             <a
               className="partner-link"
               href={partnerUrl}
               target="_blank"
               rel="noreferrer noopener"
+              aria-label={partnerLabel}
             >
-              {partnerLabel}
+              <img
+                className="partner-link-logo"
+                src="/media/site/anvayaa-logo.svg"
+                alt="Anvayaa Elder Care"
+              />
+              <span className="partner-link-copy">
+                <span className="partner-link-label">{partnerLabel}</span>
+                <span className="partner-link-url">anvayaa.com</span>
+              </span>
             </a>
           </div>
           <div className="about-visual" aria-hidden>

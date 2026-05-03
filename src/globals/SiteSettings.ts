@@ -305,7 +305,7 @@ export const SiteSettings: GlobalConfig = {
           name: 'careBody',
           type: 'textarea',
           defaultValue:
-            'The Park by Aroha is envisioned as an active adult community with the depth to evolve into assisted living whenever residents need it. The community is supported by seasoned healthcare and service professionals, creating a living environment where independence, reassurance and dignity stay in balance.',
+            'The Park by Aroha is envisioned as a thoughtfully designed active adult community, with the flexibility to seamlessly evolve into assisted living as residents’ needs change over time. Supported by experienced healthcare and service professionals, and backed by Anvayaa Elder Care, one of India’s most trusted elder care service providers, the community offers an environment where independence, reassurance, and dignity remain in perfect balance.',
         },
         { name: 'partnerLabel', type: 'text', defaultValue: 'Explore Anvayaa Elder Care' },
         { name: 'partnerUrl', type: 'text', defaultValue: 'https://www.anvayaa.com/' },

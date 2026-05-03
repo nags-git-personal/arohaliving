@@ -19,12 +19,12 @@ export const FloatingActions: React.FC<Props> = ({ phone, whatsapp }) => {
           rel="noreferrer"
           aria-label="WhatsApp"
         >
-          <Icon name="whatsapp" size={28} color="white" />
+          <span className="floating-icon"><Icon name="whatsapp" size={24} color="currentColor" /></span>
         </a>
       )}
       {cleanPhone && (
         <a className="call" href={`tel:${cleanPhone}`} aria-label="Call us">
-          <Icon name="phone" size={22} />
+          <span className="floating-icon"><Icon name="phone" size={20} color="currentColor" strokeWidth={1.8} /></span>
         </a>
       )}
     </div>

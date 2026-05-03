@@ -6,6 +6,7 @@ import './styles.css'
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings()
+  const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
   const s = (settings || {}) as {
     seoTitle?: string
     seoDescription?: string
@@ -19,6 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const imageUrl = getMediaUrl(s.ogImage) || s.ogImageUrl || '/media/site/image%201.png'
 
   return {
+    metadataBase: new URL(serverURL),
     title: s.seoTitle || 'Aroha Living — Premium Senior Living Community',
     description:
       s.seoDescription ||
