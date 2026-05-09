@@ -29,7 +29,7 @@ type AboutProps = {
 }
 
 const defaultStats: Stat[] = [
-  { value: '147', label: 'Premium residences' },
+  { value: '150', label: 'Premium residences' },
   { value: '2', label: 'Acres of landscaped greens' },
   { value: '24/7', label: 'Care-ready support ecosystem' },
 ]
@@ -48,10 +48,25 @@ const renderMultiline = (text: string) =>
     </React.Fragment>
   ))
 
+/** Renders inline **bold** markers as <strong> spans */
+function renderInline(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g)
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>
+    }
+    return part
+  })
+}
+
 export const About: React.FC<AboutProps> = ({
   promiseEyebrow = 'The Aroha Promise',
   promiseHeading = 'An ascent to a higher\nquality of life',
-  promiseBody = 'Aroha symbolises an ascent — a graceful rise into a life free from worries of maintenance, loneliness and safety. The Park by Aroha is a thoughtfully designed technology-enabled senior living community of 147 premium residences in serene Medchal, set within two acres of landscaped gardens.',
+  promiseBody = `Aroha represents a graceful rise into a life of comfort, security, and companionship.
+
+The **Park by Aroha offers 150 premium, tech-enabled senior residences** near **Medchal** in a serene setting.
+
+Set across **two acres**, it delivers modern, independent living within beautifully landscaped surroundings.`,
   promiseStats = defaultStats,
   careEyebrow = 'Care-Led Community',
   careHeading = 'A community shaped by\nexperience and care',
@@ -80,7 +95,13 @@ export const About: React.FC<AboutProps> = ({
             <span className="eyebrow">{promiseEyebrow}</span>
             <h2>&ldquo;{renderMultiline(promiseHeading)}&rdquo;</h2>
             <div className="divider" />
-            <p>{promiseBody}</p>
+            {promiseBody
+              .split(/\n\n+/)
+              .map((p) => p.trim())
+              .filter(Boolean)
+              .map((para, i) => (
+                <p key={i}>{renderInline(para)}</p>
+              ))}
           </div>
           <div className="promise-sidecar">
             <ul className="about-features" aria-label="The Park by Aroha highlights">

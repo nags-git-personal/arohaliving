@@ -47,7 +47,7 @@ const defaultSlides: Slide[] = [
 export const Hero: React.FC<HeroProps> = ({
   brandTitle = 'The Park',
   brandCaption = 'by Aroha',
-  meta = '147 Premium Residences · Medchal · Hyderabad · Launching Soon',
+  meta = '150 Premium Residences · Medchal · Hyderabad · Launching Soon',
   slides = defaultSlides,
   videoUrl,
 }) => {
@@ -85,12 +85,18 @@ export const Hero: React.FC<HeroProps> = ({
           ))
         )}
         <div className="hero-overlay" />
+        <div className="hero-atmosphere" aria-hidden="true" />
+        <div className="hero-vignette" aria-hidden="true" />
+        <div className="hero-grain" aria-hidden="true" />
       </div>
       <div className="container hero-inner">
         <div className="hero-brand-lockup" aria-label="The Park by Aroha">
           <span className="hero-brand-title">{brandTitle}</span>
           <span className="hero-brand-caption">{brandCaption}</span>
         </div>
+        <p className="hero-ambient-caption" key={active}>
+          {activeSlide.caption}
+        </p>
         <h1 dangerouslySetInnerHTML={{ __html: activeSlide.heading || defaultSlides[0].heading || '' }} />
         <p className="hero-sub">{activeSlide.subheading || defaultSlides[0].subheading}</p>
         <p className="hero-meta">{meta}</p>

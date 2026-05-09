@@ -202,7 +202,10 @@ export const SiteSettings: GlobalConfig = {
         {
           name: 'heroMeta',
           type: 'text',
-          defaultValue: '147 Premium Residences · Medchal · Hyderabad · Launching Soon',
+          admin: {
+            description: 'Small metadata line shown below the hero headline (e.g. unit count, location, status).',
+          },
+          defaultValue: '150 Premium Residences · Medchal · Hyderabad · Launching Soon',
         },
         {
           name: 'heroSlides',
@@ -273,14 +276,18 @@ export const SiteSettings: GlobalConfig = {
         {
           name: 'promiseBody',
           type: 'textarea',
+          admin: {
+            description:
+              'Separate paragraphs with a blank line. Wrap words in **double asterisks** to make them bold — e.g. **The Park by Aroha**.',
+          },
           defaultValue:
-            'Aroha symbolises an ascent — a graceful rise into a life free from worries of maintenance, loneliness and safety. The Park by Aroha is a thoughtfully designed technology-enabled senior living community of 147 premium residences in serene Medchal, set within two acres of landscaped gardens.',
+            'Aroha represents a graceful rise into a life of comfort, security, and companionship.\n\nThe **Park by Aroha offers 150 premium, tech-enabled senior residences** near **Medchal** in a serene setting.\n\nSet across **two acres**, it delivers modern, independent living within beautifully landscaped surroundings.',
         },
         {
           name: 'promiseStats',
           type: 'array',
           defaultValue: [
-            { value: '147', label: 'Premium residences' },
+            { value: '150', label: 'Premium residences' },
             { value: '2', label: 'Acres of landscaped greens' },
             { value: '24/7', label: 'Care-ready support ecosystem' },
           ],

@@ -569,6 +569,9 @@ export interface SiteSetting {
   ogImageUrl?: string | null;
   heroBrandTitle?: string | null;
   heroBrandCaption?: string | null;
+  /**
+   * Small metadata line shown below the hero headline (e.g. unit count, location, status).
+   */
   heroMeta?: string | null;
   heroSlides?:
     | {
@@ -587,6 +590,9 @@ export interface SiteSetting {
     | null;
   promiseEyebrow?: string | null;
   promiseHeading?: string | null;
+  /**
+   * Separate paragraphs with a blank line. Wrap words in **double asterisks** to make them bold — e.g. **The Park by Aroha**.
+   */
   promiseBody?: string | null;
   promiseStats?:
     | {
